@@ -1,0 +1,53 @@
+html
+
+  head
+
+    script(src='http://mbostock.github.com/d3/d3.js')
+    script(src='http://popcornjs.org/code/dist/popcorn-complete.min.js')
+
+    // The compiled module code -- mcb80x libraries, simulations, etc.
+    script(src='js/coursemap-module-debug.js')
+
+    // The script for this lesson
+    // script(src='scripts/approp.coffee', type='text/coffeescript')
+
+    // Main
+    script(src='scripts/main.coffee', type='text/coffeescript')
+
+    // Coffeescript compiler (included here to compile the above two scripts.
+    // In a "live" version, these would be pre-compiled)
+    script(src='http://cdnjs.cloudflare.com/ajax/libs/coffee-script/1.1.2/coffee-script.min.js')
+
+
+    link(rel='stylesheet', type='text/css', href='css/jquery-ui-1.9.2.custom.css')
+    link(rel='stylesheet', type='text/css', href='css/mcb80x.css')
+    link(rel='stylesheet', type='text/css', href='css/tipsy.css')
+
+
+  body
+
+    #stage.autosize
+      #interactive
+        #art
+
+        #floaty.properties-pane(data-bind='visible: propertiesVisible', style='display: none;')
+
+      //- #video
+      //-     .backdrop
+
+      #title-banner.lower-third
+        span.lower-third-title .
+
+      //- #timeline-controls
+      //-   button.timeline-button(data-bind='visible: paused, click: play')
+      //-     img(src='images/play.png', height='100%', width='100%')
+      //-   button.timeline-button(data-bind='visible: playing, click: pause')
+      //-     img(src='images/pause.png', height='100%', width='100%')
+      //-   #timeline.timeline-container
+
+
+      //- #loading-indicator.loading-indicator
+      //-   img.loading-icon(src='images/loading.gif')
+
+      //- img.logo-overlay(src='images/logo_overlay.png')
+
