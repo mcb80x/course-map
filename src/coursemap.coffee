@@ -124,6 +124,8 @@ class mcb80x.CourseMap extends mcb80x.InteractiveSVG
         # read some visual info out of the SVG
         courseRoot = @getMapPath('mcb80x')
 
+        @topTitleElement = d3.select('svg #TopTitle')
+
         @modules = []
 
         for module in courseRoot.children
@@ -163,6 +165,8 @@ class mcb80x.CourseMap extends mcb80x.InteractiveSVG
 
         console.log('Entering Course View')
 
+        @topTitleElement.text('The Neurobiology of Behavior')
+
         d3.select('#Background').on('click', undefined)
 
         # if currently in module view, shrink the representation of
@@ -176,7 +180,9 @@ class mcb80x.CourseMap extends mcb80x.InteractiveSVG
         for m in @modules
             do (m) =>
                 el = m.groupElement
-                el.on('click', => @selectModule(m))
+
+                if m.status is 'active'
+                    el.on('click', => @selectModule(m))
                 el.on('mouseover', =>
                     console.log(m.identifier)
                     m.progressHoverElement.attr('display', undefined)
@@ -202,8 +208,10 @@ class mcb80x.CourseMap extends mcb80x.InteractiveSVG
         @moduleView = true
         @currentModule = m
 
-        # Expand the SVG group representing the module
 
+        @topTitleElement.text(m.title)
+
+        # Expand the SVG group representing the module
         el = m.groupElement
 
         # remove the click handler
@@ -322,6 +330,7 @@ class mcb80x.CourseMap extends mcb80x.InteractiveSVG
             .style('opacity', 1.0)
 
         m.labelsElement.style('opacity', 0.0).attr('display', 'none')
+        m.titleElement.style('opacity', 1.0).attr('display', undefined)
 
         for lesson in m.children
             do (lesson) =>
